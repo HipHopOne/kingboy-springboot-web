@@ -31,6 +31,12 @@ import java.util.stream.Stream;
 public class UserController {
 
 
+    /**
+     * 获取用户列表
+     * @param userQueryDTO
+     * @param pageable
+     * @return
+     */
     @GetMapping
     @JsonView(value = UserDTO.UserSimpleView.class)
     public List<UserDTO> listUser(UserQueryDTO userQueryDTO, @PageableDefault(page = 1, size = 10, sort = "username, asc") Pageable pageable) {
@@ -42,6 +48,11 @@ public class UserController {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 获取用户信息
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/{id:\\d+}")
     @JsonView(value = UserDTO.UserDetailView.class)
     public UserDTO getUser(@PathVariable String id) {
@@ -49,6 +60,11 @@ public class UserController {
         return userDTO;
     }
 
+    /**
+     * 保存用户
+     * @param userDTO
+     * @return
+     */
     @PostMapping
     @JsonView(value = UserDTO.UserSimpleView.class)
     public UserDTO saveUser(@RequestBody @Valid UserDTO userDTO) {
@@ -56,6 +72,11 @@ public class UserController {
         return userDTO;
     }
 
+    /**
+     * 更新用户信息
+     * @param userDTO
+     * @return
+     */
     @PutMapping(value = "/{id:\\d+}")
     @JsonView(value = UserDTO.UserSimpleView.class)
     public UserDTO updateUser(@RequestBody @Valid UserDTO userDTO) {
@@ -64,6 +85,10 @@ public class UserController {
     }
 
 
+    /**
+     * 删除用户
+     * @param id
+     */
     @DeleteMapping(value = "/{id:\\d+}")
     public void removeUser(@PathVariable Integer id) {
         System.out.println(id);
