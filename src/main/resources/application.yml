@@ -1,6 +1,11 @@
 spring:
   application:
     name: kingboy-springboot-rest
+  datasource:
+    url: jdbc:mysql:///rest
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
 
 server:
   port: 8080
