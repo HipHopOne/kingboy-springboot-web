@@ -29,6 +29,7 @@
 
 - 使用put方法请求/user/1,就是将id为1的用户进行修改
 - 使用get方法请求/user/1,就是获取id为1的用户的详情
+- 使用get方法请求/user/name/{king}/age/{12},就是获取用户名为king,年龄为12的用户
 - 使用post方法请求/user,就是要添加一个user
 - 使用delete方法请求/user/1,就是将id为1的用户删除
 
@@ -52,6 +53,7 @@
 |C| /user   |post   | saveUser()/insertUser()|新增用户|
 |R| /user   |get    | listUser()    | 查询用户(分页，条件) |
 |R| /user/1 |get    | getUser()|  获取单个用户详情|
+|R| /user/name/{king}/age/{12} |get    | getUserByNameAndAge()|  获取用户名为king年龄为12的用户|
 |U| /user/1 |put    | updateUser()| 更新用户 |
 |D| /user/1 |delete | removeUser()/deleteUser| 删除用户 |
 
