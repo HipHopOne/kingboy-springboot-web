@@ -1,4 +1,4 @@
-package com.kingboy.validate;
+package com.kingboy.common.config.validate;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

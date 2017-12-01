@@ -1,8 +1,8 @@
 package com.kingboy.controller.user;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kingboy.dto.UserDTO;
-import com.kingboy.dto.UserQueryDTO;
+import com.kingboy.service.user.dto.UserDTO;
+import com.kingboy.service.user.dto.UserQueryDTO;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;

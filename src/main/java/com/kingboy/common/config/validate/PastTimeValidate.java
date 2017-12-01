@@ -1,4 +1,4 @@
-package com.kingboy.validate;
+package com.kingboy.common.config.validate;
 
 import com.kingboy.controller.user.UserController;
 

@@ -1,4 +1,4 @@
-package com.kingboy.dto;
+package com.kingboy.service.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
