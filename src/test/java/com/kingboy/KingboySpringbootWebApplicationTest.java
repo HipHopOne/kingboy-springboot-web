@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class KingboySpringbootRestApplicationTest {
+public class KingboySpringbootWebApplicationTest {
 
     @Resource
     private WebApplicationContext wac;
