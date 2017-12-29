@@ -27,17 +27,12 @@ public class UserDTO {
 
     public interface UserDetailView extends UserSimpleView{}
 
-    @JsonView(value = UserSimpleView.class)
     private Integer id;
 
-    @JsonView(value = UserSimpleView.class)
     private String username;
 
-    @NotBlank(message = "用户密码不能为空")
-    @JsonView(value = UserDetailView.class)
     private String password;
 
-    @JsonView(value = UserSimpleView.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
