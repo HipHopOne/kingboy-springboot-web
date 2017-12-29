@@ -53,7 +53,7 @@
 |C| /user   |post   | saveUser()/insertUser()|新增用户|
 |R| /user   |get    | listUser()    | 查询用户(分页，条件) |
 |R| /user/1 |get    | getUser()|  获取单个用户详情|
-|R| /user/name/{king}/age/{12} |get    | getUserByNameAndAge()|  获取用户名为king年龄为12的用户|
+|R| /user/name/{king}/age/less/{12} |get    | getUserByNameAndAge()|  获取用户名为king年龄为12的用户|
 |U| /user/1 |put    | updateUser()| 更新用户 |
 |D| /user/1 |delete | removeUser()/deleteUser| 删除用户 |
 

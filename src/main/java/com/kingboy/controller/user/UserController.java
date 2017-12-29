@@ -1,11 +1,11 @@
 package com.kingboy.controller.user;
 
 import com.kingboy.common.utils.page.PageParam;
-import com.kingboy.service.user.dto.UserDTO;
-import com.kingboy.service.user.dto.UserQueryDTO;
+import com.kingboy.dto.UserDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,19 +22,20 @@ public class UserController {
 
     /**
      * 获取用户列表
-     * @param userQueryDTO
+     * get user list
      * @param pageParam
      * @return
      */
     @GetMapping
-    public List<UserDTO> listUser(UserQueryDTO userQueryDTO, PageParam pageParam) {
+    public List<UserDTO> listUser(PageParam pageParam) {
         return Stream.of(new UserDTO(1, "小金", "king1", LocalDateTime.now()),
                 new UserDTO(2, "小明", "king2", LocalDateTime.now()))
                 .collect(Collectors.toList());
     }
 
     /**
-     * 获取用户信息
+     * 根据ID获取用户信息
+     * get user info by id
      * @param id
      * @return
      */
@@ -45,7 +46,19 @@ public class UserController {
     }
 
     /**
+     * 获取用户名为{username}，并且年龄小于{age}的用户
+     * get user by username and age which less than {age}
+     * @return
+     */
+    @GetMapping(value = "/name/{username}/age/less/{age}")
+    public List<UserDTO> getUserByUsernameAndAge(@PathVariable String username, @PathVariable Integer age) {
+        UserDTO userDTO = new UserDTO(1, "小金", "king1", LocalDateTime.now());
+        return Arrays.asList(userDTO);
+    }
+
+    /**
      * 保存用户
+     * save user
      * @param userDTO
      * @return
      */
@@ -56,6 +69,7 @@ public class UserController {
 
     /**
      * 更新用户信息
+     * update user info
      * @param userDTO
      * @return
      */
@@ -67,6 +81,7 @@ public class UserController {
 
     /**
      * 删除用户
+     * delete user
      * @param id
      */
     @DeleteMapping(value = "/{id:\\d+}")
