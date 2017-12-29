@@ -18,34 +18,11 @@ import java.util.stream.Stream;
  * @author kingboy--KingBoyWorld@163.com
  * @date 2017/11/26 下午1:20
  * @desc 用户接口服务.
- * <p>
- * C:  url:/user     requestMethod:post     saveUser()/insertUser()
- * R:  url:/user     requestMethod:get      listUser()                加分页
- * url:/user/1   requestMethod:get      getUser()
- * U:  url:/user/1   requestMethod:put      updateUser()
- * D:  url:/user/1   requestMethod:delete   removeUser()/deleteUser
  */
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
 
-
-    /**
-     * 获取用户列表
-     * @param userQueryDTO
-     * @param pageParam
-     * @return
-     */
-    @GetMapping
-    @JsonView(value = UserDTO.UserSimpleView.class)
-    public List<UserDTO> listUser(UserQueryDTO userQueryDTO, PageParam pageParam) {
-
-        System.out.println(ReflectionToStringBuilder.toString(userQueryDTO, ToStringStyle.MULTI_LINE_STYLE));
-        System.out.println(ReflectionToStringBuilder.toString(pageParam, ToStringStyle.MULTI_LINE_STYLE));
-        return Stream.of(new UserDTO(1, "小金", "king1", LocalDateTime.now()),
-                new UserDTO(2, "小明", "king2", LocalDateTime.now()))
-                .collect(Collectors.toList());
-    }
 
     /**
      * 获取用户信息
@@ -69,28 +46,6 @@ public class UserController {
     public UserDTO saveUser(@RequestBody @Valid UserDTO userDTO) {
         System.out.println(ReflectionToStringBuilder.toString(userDTO, ToStringStyle.MULTI_LINE_STYLE));
         return userDTO;
-    }
-
-    /**
-     * 更新用户信息
-     * @param userDTO
-     * @return
-     */
-    @PutMapping(value = "/{id:\\d+}")
-    @JsonView(value = UserDTO.UserSimpleView.class)
-    public UserDTO updateUser(@RequestBody @Valid UserDTO userDTO) {
-        System.out.println(ReflectionToStringBuilder.toString(userDTO, ToStringStyle.MULTI_LINE_STYLE));
-        return userDTO;
-    }
-
-
-    /**
-     * 删除用户
-     * @param id
-     */
-    @DeleteMapping(value = "/{id:\\d+}")
-    public void removeUser(@PathVariable Integer id) {
-        System.out.println(id);
     }
 
 
