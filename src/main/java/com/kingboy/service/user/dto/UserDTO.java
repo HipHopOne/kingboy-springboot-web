@@ -23,10 +23,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserDTO {
 
-    public interface UserSimpleView{}
-
-    public interface UserDetailView extends UserSimpleView{}
-
     private Integer id;
 
     private String username;

@@ -17,11 +17,8 @@ public class UserController {
 
     /**
      * 获取用户信息
-     * @param id
-     * @return
      */
     @GetMapping(value = "/{id}")
-    @JsonView(value = UserDTO.UserDetailView.class)
     public UserDTO getUser(@PathVariable String id) {
         UserDTO userDTO = new UserDTO(1, "小金", "king1", LocalDateTime.now());
         return userDTO;
@@ -29,11 +26,8 @@ public class UserController {
 
     /**
      * 保存用户
-     * @param userDTO
-     * @return
      */
     @PostMapping
-    @JsonView(value = UserDTO.UserSimpleView.class)
     public UserDTO saveUser(@RequestBody UserDTO userDTO) {
         return userDTO;
     }
