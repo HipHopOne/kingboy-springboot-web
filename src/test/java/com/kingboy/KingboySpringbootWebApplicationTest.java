@@ -1,10 +1,12 @@
 package com.kingboy;
 
+import lombok.extern.apachecommons.CommonsLog;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -21,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @date 2017/11/26 下午10:44
  * @desc rest服务测试.
  */
+@CommonsLog
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class KingboySpringbootWebApplicationTest {
@@ -35,32 +38,24 @@ public class KingboySpringbootWebApplicationTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
-
-    /**
-     * 测试获取单个用户
-     * @throws Exception
-     */
     @Test
-    public void getUserWhenSuccessTest() throws Exception{
-        String contentAsString = mockMvc.perform(get("/user/1")
-                .contentType(MediaType.APPLICATION_JSON))
+    public void getUserWhenSuccess() throws Exception {
+        String result = mockMvc.perform(get("/user/小金")
+                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("小金"))
                 .andReturn().getResponse().getContentAsString();
-        System.out.println(contentAsString);
+        log.info(result);
     }
 
-    /**
-     * 测试错误的ID来获取用户
-     * @throws Exception
-     */
     @Test
-    public void getUserWhenFailTest() throws Exception {
-        mockMvc.perform(get("/user/a")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().is4xxClientError());
+    public void getUserWhenIdIsError() throws Exception {
+        String result = mockMvc.perform(get("/user/aaaaaaaaaaaa")
+                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(status().is4xxClientError())
+                .andReturn().getResponse().getContentAsString();
+        log.info(result);
     }
-
 
     /**
      * 测试保存用户
@@ -68,7 +63,7 @@ public class KingboySpringbootWebApplicationTest {
      */
     @Test
     public void saveUserWhenSuccessTest() throws Exception {
-        String content = "{\"id\":3,\"username\":\"小金\",\"password\":\"king1\",\"birth\": \"2015-12-12 12:11\"}";
+        String content = "{\"username\":\"asdfg\",\"password\":\"king1\",\"birth\": \"2015-12-12 12:11\"}";
         String contentAsString = mockMvc.perform(post("/user")
                 .content(content)
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -77,17 +72,15 @@ public class KingboySpringbootWebApplicationTest {
         System.out.println(contentAsString);
     }
 
-    /**
-     * 测试密码为空时，保存用户
-     * @throws Exception
-     */
     @Test
-    public void saveUserWhenFailNullPasswordTest() throws Exception {
-        String content = "{\"id\":3,\"username\":\"小金\",\"password\":null,\"birth\": \"2015-12-12 12:11\"}";
-        mockMvc.perform(post("/user")
+    public void saveUserWhenFailOfUsername() throws Exception {
+        String content = "{\"username\":\"usernameisking\",\"password\":\"king1\",\"birth\": \"2015-12-12 12:11\"}";
+        MockHttpServletResponse response = mockMvc.perform(post("/user")
                 .content(content)
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is4xxClientError())
+                .andReturn().getResponse();
+        log.info(response);
     }
 
 }
