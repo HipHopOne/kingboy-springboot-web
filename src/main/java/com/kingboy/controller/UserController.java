@@ -1,6 +1,7 @@
 package com.kingboy.controller;
 
 import com.kingboy.dto.UserDTO;
+import com.kingboy.dto.UserGroupValidDTO;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,8 +54,25 @@ public class UserController {
      *  }
      */
     @PostMapping
-    public UserDTO saveUserOuter(@RequestBody @Valid UserDTO userDTO) {
+    public UserDTO saveUser(@RequestBody @Valid UserDTO userDTO) {
         return userDTO;
+    }
+
+
+    /**
+     * 分组校验：保存用户，不能传ID
+     */
+    @PostMapping("/save")
+    public void validSaveUser(@RequestBody @Validated(value = UserGroupValidDTO.SaveGroup.class) UserGroupValidDTO userDTO) {
+        //save user
+    }
+
+    /**
+     * 分组校验：更新用户信息，需要传ID
+     */
+    @PostMapping("/update")
+    public void validUpdateUser(@RequestBody @Validated(value = UserGroupValidDTO.UpdateGroup.class) UserGroupValidDTO userDTO) {
+        //update user
     }
 
 }
