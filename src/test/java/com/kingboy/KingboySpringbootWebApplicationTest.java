@@ -126,20 +126,6 @@ public class KingboySpringbootWebApplicationTest {
     }
 
     /**
-     * 更新用户，传入生日为未来时间
-     * @throws Exception
-     */
-    @Test
-    public void updateUserWhenFailBirthFutureTest() throws Exception {
-        String content = "{\"id\":1,\"username\":\"小金\",\"password\":\"king1\",\"birth\": \"2017-12-12 12:11\"}";
-        mockMvc.perform(put("/user/1")
-                .content(content)
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().is4xxClientError());
-    }
-
-
-    /**
      * 删除用户测试
      * @throws Exception
      */

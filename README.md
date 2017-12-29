@@ -64,4 +64,4 @@
 风格规定是死的，项目中才能找到适合自己的一套最佳实践。
 
 
-个人项目实例[kingboy-springboot-rest](https://github.com/KingBoyWorld/kingboy-springboot-rest.git),其中包含了对参数校验，JsonView的视图定制等功能的实现，欢迎查看并指正。
+个人项目实例[kingboy-springboot-rest](https://github.com/KingBoyWorld/kingboy-springboot-web.git),切换到feature_restful分支，欢迎查看并指正。

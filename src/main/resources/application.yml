@@ -3,8 +3,3 @@ server:
 spring:
   application:
     name: kingboy-springboot-web
-  datasource:
-    url: jdbc:mysql:///rest
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.jdbc.Driver

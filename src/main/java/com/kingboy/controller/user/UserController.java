@@ -1,12 +1,11 @@
 package com.kingboy.controller.user;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.kingboy.common.utils.page.PageParam;
 import com.kingboy.service.user.dto.UserDTO;
 import com.kingboy.service.user.dto.UserQueryDTO;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,15 +33,15 @@ public class UserController {
     /**
      * 获取用户列表
      * @param userQueryDTO
-     * @param pageable
+     * @param pageParam
      * @return
      */
     @GetMapping
     @JsonView(value = UserDTO.UserSimpleView.class)
-    public List<UserDTO> listUser(UserQueryDTO userQueryDTO, @PageableDefault(page = 1, size = 10, sort = "username, asc") Pageable pageable) {
+    public List<UserDTO> listUser(UserQueryDTO userQueryDTO, PageParam pageParam) {
 
         System.out.println(ReflectionToStringBuilder.toString(userQueryDTO, ToStringStyle.MULTI_LINE_STYLE));
-        System.out.println(ReflectionToStringBuilder.toString(pageable, ToStringStyle.MULTI_LINE_STYLE));
+        System.out.println(ReflectionToStringBuilder.toString(pageParam, ToStringStyle.MULTI_LINE_STYLE));
         return Stream.of(new UserDTO(1, "小金", "king1", LocalDateTime.now()),
                 new UserDTO(2, "小明", "king2", LocalDateTime.now()))
                 .collect(Collectors.toList());
