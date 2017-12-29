@@ -33,7 +33,6 @@ dependencies {
     compile(
             'org.springframework.boot:spring-boot-starter-web',
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
-            'mysql:mysql-connector-java',
             "com.kingboy:common:$commonVersion"
     )
 
