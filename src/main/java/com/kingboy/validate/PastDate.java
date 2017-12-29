@@ -2,12 +2,8 @@ package com.kingboy.validate;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.constraints.Past;
 import java.lang.annotation.*;
 
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @author kingboy--KingBoyWorld@163.com

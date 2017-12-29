@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handleValidationException(MethodArgumentNotValidException e) {
         return e.getBindingResult().getAllErrors().stream()
-                .map(message -> message.getDefaultMessage() + " ")
+                .map(message -> message.getDefaultMessage() + "\n")
                 .reduce("", (s0, s1) -> s0 + s1);
     }
 

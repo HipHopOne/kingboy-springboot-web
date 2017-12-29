@@ -39,16 +39,16 @@ public class UserDTO {
     private List families;
 
     //校验长度，可以用于Array,Collection,Map,String
-    @Size(min = 4, max = 8, message = "用户名长度错误")
+    @Size(min = 4, max = 8, message = "用户名长度错误 by size")
     //校验长度，只能用于String
-    @Length(min = 4, max = 8, message = "用户名长度错误")
+    @Length(min = 4, max = 8, message = "用户名长度错误 by length")
     private String username;
 
     //javax校验
-    @Max(value = 200, message = "年龄一般不会超过200")
-    @Min(value = 1, message = "尚未出生")
+    @Max(value = 200, message = "年龄一般不会超过200 by max")
+    @Min(value = 1, message = "年龄一般不能小于1 by min")
     //hibernate校验，效果等同
-    @Range(min = 0, max = 200)
+    @Range(min = 0, max = 200, message = "年龄范围在0-200之间 by range")
     private Integer age;
 
     //校验参数是否是False, 相反的是@AssertTrue
