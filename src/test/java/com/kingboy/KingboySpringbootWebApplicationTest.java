@@ -97,20 +97,6 @@ public class KingboySpringbootWebApplicationTest {
     }
 
     /**
-     * 测试密码为空时，保存用户
-     * @throws Exception
-     */
-    @Test
-    public void saveUserWhenFailNullPasswordTest() throws Exception {
-        String content = "{\"id\":3,\"username\":\"小金\",\"password\":null,\"birth\": \"2015-12-12 12:11\"}";
-        mockMvc.perform(post("/user")
-                .content(content)
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().is4xxClientError());
-    }
-
-
-    /**
      * 更新用户测试
      * @throws Exception
      */
