@@ -1,78 +1,47 @@
 package com.kingboy.controller;
 
+import com.kingboy.common.utils.result.ApiResult;
 import com.kingboy.dto.UserDTO;
-import com.kingboy.dto.UserGroupValidDTO;
-import org.springframework.validation.annotation.Validated;
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /**
  * @author kingboy--KingBoyWorld@163.com
  * @date 2017/11/26 下午1:20
  * @desc 用户接口服务.
  */
-@Validated
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
 
-    /**
-     * 校验请求参数
-     */
-    @GetMapping
-    public UserDTO getUser(@Size(min = 5, max = 8, message = "用户名长度超出限制") String username) {
-        ArrayList<String> families = new ArrayList<>();
-        families.add("father");
-        families.add("mother");
-        families.add("sister");
-        return new UserDTO(1, "13133336608", "friend",
-                families, "kingboy", 24, false, "123456",
-                LocalDateTime.now(), "kingboyworld@163.com");
+    @ApiOperation(value = "获取用户信息", notes = "通过id获取用户")
+    @GetMapping(value = "/{id}")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "id", paramType = "path", value = "用户ID"),
+            @ApiImplicitParam(name = "username", paramType = "query", value = "用户名")
+    })
+    public ApiResult getUser(@PathVariable(value = "id") Integer id, @RequestParam String username) {
+        return ApiResult.success(new UserDTO(id, username, LocalDateTime.now()));
     }
 
-    /**
-     * 校验请求对象, 正确json请求体如下
-     *
-     *  {
-     *      "telephone": "18652002252",
-     *      "friendName": "friend",
-     *      "families": [
-     *              "father",
-     *              "mother",
-     *              "sister"
-     *      ],
-     *      "username": "kingboy",
-     *      "age": 24,
-     *      "lock": false,
-     *      "password": "123456",
-     *      "birth": "2017-12-29 19:45",
-     *      "email": "kingboyworld@163.com"
-     *  }
-     */
+    @ApiOperation(value = "保存用户", notes = "保存用户，ID为后台自动生成")
     @PostMapping
-    public UserDTO saveUser(@RequestBody @Valid UserDTO userDTO) {
-        return userDTO;
+    public ApiResult saveUser(@RequestBody UserDTO userDTO) {
+        return ApiResult.success(userDTO);
     }
 
-
-    /**
-     * 分组校验：保存用户，不能传ID
-     */
-    @PostMapping("/save")
-    public void validSaveUser(@RequestBody @Validated(value = UserGroupValidDTO.SaveGroup.class) UserGroupValidDTO userDTO) {
-        //save user
+    @ApiOperation(value = "更新用户", notes = "更新用户，ID必传")
+    @PutMapping
+    public ApiResult updateUser(@RequestBody UserDTO userDTO) {
+        return ApiResult.success("success");
     }
 
-    /**
-     * 分组校验：更新用户信息，需要传ID
-     */
-    @PostMapping("/update")
-    public void validUpdateUser(@RequestBody @Validated(value = UserGroupValidDTO.UpdateGroup.class) UserGroupValidDTO userDTO) {
-        //update user
+    @DeleteMapping("/{id}")
+    public ApiResult removeUser(@ApiParam(value = "用户ID") @PathVariable(value = "id")  Integer id,
+                                @ApiParam(value = "用户名") @RequestParam String username) {
+        return ApiResult.success("success");
     }
 
 }
