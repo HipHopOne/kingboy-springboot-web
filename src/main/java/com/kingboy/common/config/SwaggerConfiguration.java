@@ -18,17 +18,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @desc Swagger配置类.
  */
 @Data
-@EnableSwagger2
-@Configuration
-@ConfigurationProperties(prefix = "swagger")
+@EnableSwagger2//Swagger的开关，表示我们在项目中启用Swagger
+@Configuration//声名这是一个配置类
+@ConfigurationProperties(prefix = "swagger")//SpringBoot中提供的属性自动赋值。也可以直接在属性上使用@Value("${swagger.属性名}")进行赋值
 public class SwaggerConfiguration {
 
+    //controller接口所在的包
     private String basePackage = "com.kingboy.controller";
 
+    //当前文档的标题
     private String title = "他很懒，什么都没有留下";
 
+    //当前文档的详细描述
     private String description = "他很懒，什么都没有留下";
 
+    //当前文档的版本
     private String version = "V1.0";
 
     @Bean
@@ -49,4 +53,5 @@ public class SwaggerConfiguration {
                 .build();
     }
 
+    //Setter Getter ...
 }
