@@ -139,7 +139,7 @@ swagger:
 
 ### 四、Swagger的使用方法
 
-Swagger的使用注解有很多，这里我们只讲最常用的注解，已经这些注解中最常用的属性。
+Swagger的使用注解有很多，这里我们只讲最常用的注解，以及这些注解中最常用的属性。
 - @Api(value = "用户Controller")
     - 加在controller类上
     - value表示该类的描述
