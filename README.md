@@ -63,8 +63,8 @@ Swagger会自动根据我们的接口来生成一个html页面，在这个页面
 
 生成的html页面
 
->>>> ![put](readme/iamge/1.png)
->>>> ![delete](readme/iamge/2.png)
+>>>> ![put](readme/image/1.png)
+>>>> ![delete](readme/image/2.png)
 
 ### 三、SpringBoot集成Swagger的环境准备
 
