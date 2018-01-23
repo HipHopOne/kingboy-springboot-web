@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.6.RELEASE'
+        springBootVersion = '1.5.8.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -20,7 +20,7 @@ sourceCompatibility = 1.8
 
 repositories {
     maven {
-        url "http://jenkins.maxrocky.com:8081/repository/maxrocky/"
+        url "http://123.56.252.81:8081/repository/maven-public/"
     }
 }
 
